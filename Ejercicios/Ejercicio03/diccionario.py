@@ -9,7 +9,6 @@ from abc import ABC, abstractmethod
 from itertools import chain
 
 
-
 class ObtenerDiccionario(ABC):
     
     def __init__(self, texto:str):
@@ -82,7 +81,6 @@ class Diccionario(ObtenerDiccionario):
             
         return salida
     
-
 
 texto = "Adventures in Disneyland \nTwo blondes were going to Disneyland when they came to a fork in the road. The sign read: ”Disneyland LEFT.” So they went home."
 

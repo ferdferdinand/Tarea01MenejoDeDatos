@@ -18,21 +18,23 @@ class Usuario(ABC):
         self.sa = suma_asegurada
         self.k : float
         self.p : float
-        self.factor_de_edad()
-        
-    
+
+
     def validar_edad(self):
         return self.edad >= 18 and self.edad <= 99
-    
+
+
     def validar_sa(self):
         return 500000 <= self.sa <= 3000000
-    
+
+
     def set_edad(self, edad:int):
         self.edad = edad
-    
+
+
     def set_sa(self, sa:float):
         self.sa = sa
-    
+
     
     def calcular_edad(self):
         if self.f == "No":
@@ -54,6 +56,8 @@ class Usuario(ABC):
             
     
     def calcular_prima(self):
+        self.calcular_edad()
+        self.factor_de_edad()
         self.p = (self.sa * self.k) / 1000
     
     @abstractmethod
@@ -69,11 +73,10 @@ class Femenino(Usuario):
         
         super().__init__(edad, fumador, extra_prima,\
                      suma_asegurada)
-        self.x += 10
-        
+        self.x -= 10
+
             
     def factor_de_edad(self):
-        self.calcular_edad()
         if self.x in range(18,25):
             self.k = 1.5
         elif self.x in range(25,45):
@@ -85,14 +88,15 @@ class Femenino(Usuario):
     
     
     def __str__(self):
-        return "Asegurada:\n\n" +\
-                f"Género: F\n" +\
-                f"Edad: {self.edad}\n"+\
-                f"Fumador: {self.f}\n"+\
-                f"Extra-prima: {self.ep}\n\n"+\
-                "-"*30 + "\n"\
-                f"Suma asegurada: {self.sa:,.2f}\n"+\
-                f"Prima: {self.p/21.13:,.2f} DLS"
+        return "Asegurada:\n\n"\
+                + "Género: F\n"\
+                + f"Edad: {self.edad}\n"\
+                + f"Fumador: {self.f}\n"\
+                + f"Extra-prima: {self.ep}\n\n"\
+                + "-"*30 + "\n"\
+                + f"Suma asegurada: {self.sa:,.2f}\n"\
+                + f"Prima: {self.p:,.2f} MXN\n"\
+                + f"Prima: {self.p/21.13:,.2f} DLS"
         
         
 class Masculino(Usuario):
@@ -102,10 +106,9 @@ class Masculino(Usuario):
         
         super().__init__(edad, fumador, extra_prima,\
                      suma_asegurada)
-            
+        
             
     def factor_de_edad(self):
-        self.calcular_edad()
         if self.x in range(18,25):
             self.k = 2
         elif self.x in range(25,45):
@@ -117,21 +120,22 @@ class Masculino(Usuario):
     
         
     def __str__(self):
-        return "Asegurado:\n\n" +\
-                f"Género: M\n" +\
-                f"Edad: {self.edad}\n"+\
-                f"Fumador: {self.f}\n"+\
-                f"Extra-prima: {self.ep}\n\n"+\
-                "-"*30 + "\n"\
-                f"Suma asegurada: {self.sa:,.2f}\n"+\
-                f"Prima: {self.p/21.13:,.2f} DLS"
+        return "Asegurado:\n\n"\
+                + "Género: M\n"\
+                + f"Edad: {self.edad}\n"\
+                + f"Fumador: {self.f}\n"\
+                + f"Extra-prima: {self.ep}\n\n"\
+                + "-"*30 + "\n"\
+                + f"Suma asegurada: {self.sa:,.2f}\n"\
+                + f"Prima: {self.p:,.2f} MXN\n"\
+                + f"Prima: {self.p/21.13:,.2f} DLS"
         
 
 
 
 """
 NOTA:
-    Ya no hice el script de prueba como debería, pero las clases están construidas.
+Ya no hice el script de prueba como debería, pero las clases están construidas.
 """
 
 
